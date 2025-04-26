@@ -21,9 +21,10 @@
 # v0.0.3: Fix other FileTypePlugins
 # v0.0.4: Fix Calibre Plugin index / updater
 # v0.0.5: Fix Python2 bug, drop minimum Calibre version to 2.0.0
+# v0.0.6: Fix encoding when opening lcpl
 
 PLUGIN_NAME = "LCPL Input"
-PLUGIN_VERSION_TUPLE = (0, 0, 5)
+PLUGIN_VERSION_TUPLE = (0, 0, 6)
 
 from calibre.customize import FileTypePlugin        # type: ignore
 __version__ = PLUGIN_VERSION = ".".join([str(x)for x in PLUGIN_VERSION_TUPLE])
@@ -291,7 +292,7 @@ class LCPLInput(FileTypePlugin):
         
         # Check file type: 
         with open(path_to_ebook, "rb") as bookfile:
-            dataSTR = bookfile.read().decode('latin-1')
+            dataSTR = bookfile.read().decode('utf-8')
 
     
         try: 
